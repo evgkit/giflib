@@ -3,15 +3,13 @@ package ru.evgkit.giflib.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.evgkit.giflib.data.GifRepository;
 import ru.evgkit.giflib.model.Gif;
 
 import java.time.LocalDate;
 
-/**
- * Created by e on 30.01.16.
- */
 @Controller
 public class GifController {
     @Autowired
@@ -27,9 +25,9 @@ public class GifController {
         return "index";
     }
 
-    @RequestMapping("/gif")
-    public String getDetailGif(ModelMap modelMap) {
-        modelMap.put("gif", gifRepository.findByName("android-explosion"));
+    @RequestMapping("/gif/{name}")
+    public String getDetailGif(@PathVariable String name, ModelMap modelMap) {
+        modelMap.put("gif", gifRepository.findByName(name));
         return "gif-details";
     }
 }

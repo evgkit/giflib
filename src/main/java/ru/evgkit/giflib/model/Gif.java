@@ -2,9 +2,6 @@ package ru.evgkit.giflib.model;
 
 import java.time.LocalDate;
 
-/**
- * Created by e on 30.01.16.
- */
 public class Gif {
     private String name;
     private LocalDate dateUploaded;

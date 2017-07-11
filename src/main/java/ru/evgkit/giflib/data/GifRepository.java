@@ -7,9 +7,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by e on 30.01.16.
- */
 @Component
 public class GifRepository {
     private static final List<Gif> ALL_GIFS = Arrays.asList(
