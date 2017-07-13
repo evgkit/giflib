@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.evgkit.giflib.data.GifRepository;
 import ru.evgkit.giflib.model.Gif;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class GifController {
@@ -16,13 +16,20 @@ public class GifController {
     private GifRepository gifRepository;
 
     @RequestMapping("/")
-    public String home() {
+    public String home(ModelMap modelMap) {
+        List<Gif> allGifs = gifRepository.getAllGifs();
+        modelMap.put("gifs", allGifs);
         return "home";
     }
 
     @RequestMapping("/index")
     public String index() {
         return "index";
+    }
+
+    @RequestMapping("/favorites")
+    public String favorites() {
+        return "favorites";
     }
 
     @RequestMapping("/gif/{name}")

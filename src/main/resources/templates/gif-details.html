@@ -44,10 +44,10 @@
             </div>
         </div>
     </div>
+    <!--/*@thymesVar id="gif" type="ru.evgkit.giflib.model.Gif"*/-->
     <div class="gif-detail container">
         <div class="frame row">
             <div class="col s12">
-                <!--/*@thymesVar id="gif" type="ru.evgkit.giflib.model.Gif"*/-->
                 <img th:src="@{'/gifs/' + ${gif.name} + '.gif'}" alt="gif" />
                 <a href="#" th:class="(${gif.favorite} ? 'un' : '') + 'mark favorite'"></a>
             </div>
