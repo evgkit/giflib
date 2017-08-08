@@ -1,28 +1,43 @@
 package ru.evgkit.giflib.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Category {
-    private int id;
-
+    private Long id;
     private String name;
+    private String colorCode;
+    private List<Gif> gifs = new ArrayList<>();
 
-    public int getId() {
+    public Category() {
+    }
+
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public Category(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public String getColorCode() {
+        return colorCode;
     }
+
+    public void setColorCode(String colorCode) {
+        this.colorCode = colorCode;
+    }
+
+    public List<Gif> getGifs() {
+        return gifs;
+    }
+
 }
