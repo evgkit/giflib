@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.evgkit.giflib.model.Category;
+import ru.evgkit.giflib.service.CategoryService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +17,15 @@ import java.util.List;
 @Controller
 public class CategoryController {
     @Autowired
-    private SessionFactory sessionFactory;
+    private CategoryService categoryService;
 
     // Index of all categories
     @RequestMapping("/categories")
-    @SuppressWarnings("unchecked")
     public String listCategories(Model model) {
         // TODO: Get all categories
-        Session session = sessionFactory.openSession();
-        List<Category> categories = session.createCriteria(Category.class).list();
-        session.close();
+        List<Category> categories = categoryService.findAll();
 
-        model.addAttribute("categories",categories);
+        model.addAttribute("categories", categories);
         return "category/index";
     }
 
