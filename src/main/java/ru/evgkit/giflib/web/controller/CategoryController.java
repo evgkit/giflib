@@ -66,11 +66,9 @@ public class CategoryController {
 
     // Add a category
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
-    public String addCategory() {
-        // TODO: Add category if valid data was received
-
-        // TODO: Redirect browser to /categories
-        return null;
+    public String addCategory(Category category) {
+        categoryService.save(category);
+        return "redirect:/categories";
     }
 
     // Delete an existing category
