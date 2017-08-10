@@ -1,6 +1,10 @@
 package ru.evgkit.giflib.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -11,9 +15,15 @@ public class Gif {
     private Long id;
 
     @Lob
+    @NotNull
     private byte[] bytes;
 
+    @NotNull
+    @Size(min = 3, max = 12)
     private String description;
+
+    @Transient
+    private MultipartFile file;
 
     @ManyToOne
     private Category category;
@@ -111,5 +121,13 @@ public class Gif {
 
     public void setHash(String hash) {
         this.hash = hash;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 }
