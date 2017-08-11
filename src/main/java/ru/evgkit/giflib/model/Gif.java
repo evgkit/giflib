@@ -19,10 +19,10 @@ public class Gif {
     private byte[] bytes;
 
     @NotNull
-    @Size(min = 3, max = 12)
     private String description;
 
     @Transient
+    @NotNull
     private MultipartFile file;
 
     @ManyToOne

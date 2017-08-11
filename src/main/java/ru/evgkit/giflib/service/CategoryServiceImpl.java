@@ -29,6 +29,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void delete(Category category) {
+        if (!category.getGifs().isEmpty()) {
+            throw new CategoryNotEmptyException();
+        }
+
         categoryDao.delete(category);
     }
 }

@@ -1,24 +1,23 @@
 package ru.evgkit.giflib.dao;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.evgkit.giflib.model.Category;
+import ru.evgkit.giflib.model.Gif;
 
 import java.util.List;
 
 @Repository
-public class CategoryDaoImpl implements CategoryDao {
+public class GifDaoImpl implements GifDao {
     @Autowired
     private SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Category> findAll() {
+    public List<Gif> findAll() {
         Session session = sessionFactory.openSession();
-        List<Category> categories = session.createCriteria(Category.class).list();
+        List<Gif> gifs = session.createCriteria(Gif.class).list();
 
         /*
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -28,35 +27,34 @@ public class CategoryDaoImpl implements CategoryDao {
          */
 
         session.close();
-        return categories;
+        return gifs;
     }
 
     @Override
-    public Category findById(Long id) {
+    public Gif findById(Long id) {
         Session session = sessionFactory.openSession();
-        Category category = session.get(Category.class, id);
-        Hibernate.initialize(category.getGifs());
+        Gif gif = session.get(Gif.class, id);
         session.close();
-        return category;
+        return gif;
     }
 
     @Override
-    public void save(Category category) {
+    public void save(Gif gif) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.saveOrUpdate(category);
+        session.saveOrUpdate(gif);
 
         session.getTransaction().commit();
         session.close();
     }
 
     @Override
-    public void delete(Category category) {
+    public void delete(Gif gif) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.delete(category);
+        session.delete(gif);
 
         session.getTransaction().commit();
         session.close();
