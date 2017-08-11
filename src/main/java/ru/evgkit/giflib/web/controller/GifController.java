@@ -13,6 +13,7 @@ import ru.evgkit.giflib.service.GifService;
 import ru.evgkit.giflib.web.FlashMessage;
 import ru.evgkit.giflib.web.validator.GifValidator;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -128,19 +129,16 @@ public class GifController {
 
     // Mark/unmark an existing GIF as a favorite
     @RequestMapping(value = "/gifs/{gifId}/favorite", method = RequestMethod.POST)
-    public String toggleFavorite(@PathVariable Long gifId) {
-        // TODO: With GIF whose id is gifId, toggle the favorite field
-
-        // TODO: Redirect to GIF's detail view
-        return null;
+    public String toggleFavorite(@PathVariable Long gifId, HttpServletRequest request) {
+        Gif gif = gifService.findById(gifId);
+        gifService.toggleFavorite(gif);
+        return String.format("redirect:%s", request.getHeader("referer"));
     }
 
     // Search results
     @RequestMapping("/search")
     public String searchResults(@RequestParam String q, Model model) {
-        // TODO: Get list of GIFs whose description contains value specified by q
-        List<Gif> gifs = new ArrayList<>();
-
+        List<Gif> gifs = gifService.searchByName(q);
         model.addAttribute("gifs", gifs);
         return "gif/index";
     }

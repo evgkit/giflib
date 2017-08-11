@@ -22,7 +22,6 @@ public class Gif {
     private String description;
 
     @Transient
-    @NotNull
     private MultipartFile file;
 
     @ManyToOne
