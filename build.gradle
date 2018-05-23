@@ -1,19 +1,28 @@
-group 'ru.evgkit'
-version '1.0-SNAPSHOT'
-
 buildscript {
+    ext {
+        springBootVersion = '2.0.2.RELEASE'
+    }
     repositories {
         mavenCentral()
     }
-
     dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'spring-boot'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
+bootJar {
+    baseName = 'giflib-spring-boot'
+    version =  '0.1.0'
+}
+
+group 'com.evgkit'
+version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
@@ -21,12 +30,34 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//    compile 'org.springframework.boot:spring-boot-starter-security'
+//
     compile 'org.hashids:hashids:1.0.1'
-    compile 'org.springframework:spring-orm:4.2.5.RELEASE'
-    compile 'org.hibernate:hibernate-core:5.1.0.Final'
+//    compile 'org.springframework:spring-orm:4.2.5.RELEASE'
+//    compile 'org.springframework.data:spring-data-jpa:1.9.2.RELEASE'
+//    compile 'org.hibernate:hibernate-core:5.1.0.Final'
+    compile 'org.hibernate:hibernate-entitymanager:5.2.10.Final'
+//
     compile 'org.apache.tomcat:tomcat-dbcp:8.0.32'
-    compile 'com.h2database:h2:1.4.191'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE'
+//
+//    runtime 'javax.transaction:jta:1.1'
+//    runtime 'org.aspectj:aspectjweaver:1.8.7'
+//    runtime 'org.postgresql:postgresql'
+//
+//    testCompile 'org.springframework.boot:spring-boot-starter-test'
+//
+//    testCompile group: 'junit', name: 'junit', version: '4.11'
 
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    //compile('org.flywaydb:flyway-core')
+    //runtime('org.springframework.boot:spring-boot-devtools')
+    runtime('org.postgresql:postgresql')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.security:spring-security-test')
 }

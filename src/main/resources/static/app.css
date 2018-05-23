@@ -804,3 +804,53 @@ label.button {
         margin-left: 8.33333%;
     }
 }
+
+.card .card-image img {
+    padding: 20px;
+}
+
+form.login button[type=submit] {
+    width: 100%;
+    padding: 10px;
+    height: initial;
+}
+
+form.login button[type=submit], form.login button[type=submit]:hover {
+    background: #117FC4;
+}
+
+[type="checkbox"]+label::before {
+    border-color: #dad7de;
+    border-width: 1px;
+    width: 36px;
+    height: 36px;
+    transition: none;
+    -webkit-transition: none;
+}
+
+[type="checkbox"]+label {
+    font-size: 2rem;
+    line-height: 3rem;
+    height: 3rem;
+    padding-left: 46px;
+    font-weight: 200;
+    color: #555;
+}
+
+[type="checkbox"]:checked+label {
+    color: #d0d0d0;
+}
+
+[type="checkbox"]:checked+label::before {
+    top: -4px;
+    left: -7px;
+    width: 20px;
+    height: 34px;
+    border-bottom: 3px solid #5fcf80;
+    border-right: 3px solid #5fcf80;
+}
+
+.logout button {
+    border: none;
+    background: transparent;
+}
